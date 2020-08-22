@@ -12,6 +12,10 @@ function App() {
     setCount(count + 1);
     console.log(count);
   }
+  const decrement = () => {
+    setCount(count - 1);
+    console.log(count);
+  }
 
   const name = 'okada';
 
@@ -23,6 +27,7 @@ function App() {
       <header className="App-header">
 
         <button onClick={increment}>いいね！</button>
+        <button onClick={decrement}>よくないね！</button>
         {count}
 
         <a className="App-link">
