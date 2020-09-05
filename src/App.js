@@ -17,11 +17,24 @@ function App() {
     console.log(count);
   }
 
-  const name = 'okada';
+  const [name, setName] = useState([]);
+  // const map = [okada]
+
+  const array = []
+
+  const add = () => {
+    const map = name.map(x => x * 2)
+    const okada = "okada";
+
+    array.push(okada)
+    setName([...name, ...array])
+    console.log(name);
+  }
 
   const handleclick = () => {
     window.alert("Hello World")
   }
+
   return (//returnの中がjsx
     <div className="App">
       <header className="App-header">
@@ -29,6 +42,9 @@ function App() {
         <button onClick={increment}>いいね！</button>
         <button onClick={decrement}>よくないね！</button>
         {count}
+
+        <button onClick={add}>add</button>
+        {name}
 
         <a className="App-link">
           <button
@@ -47,7 +63,12 @@ function App() {
           <input type="text" />
           <a href="#">a タグ</a>
 
-          {name}
+          {name.map(data => {
+            console.log(data)
+            return (
+              <div>{data}</div>
+            )
+          })}
 
         </div>
       </header>
