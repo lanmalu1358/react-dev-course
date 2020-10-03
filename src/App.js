@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import Card from './card';
 import { useTable } from 'react-table';
+// import { BrowseRouter as Router, Route, Switch } from 'react-router-dom';
+// import ComponentA from './ComponentA';
+// import ComponentB from './ComponentB';
+
 
 
 
@@ -17,6 +21,14 @@ const sampleArray = [
 
 
 export default function App() {
+  // return (
+  //   <Router>
+  //     <Switch>
+  //       <Route exact path="/" component= (ComponentA) />
+  //       <Route exact path="componentb" component= (ComponentB) />
+  //     </Switch>
+  //   </Router>
+  // );
   const [count, setCount] = useState(0);
 
   const increment = () => {
@@ -46,7 +58,9 @@ export default function App() {
     window.alert("Hello World")
   }
 
-  return (//returnの中がjsx
+
+
+  return (
     <div className="App">
       <header className="App-header">
 
@@ -91,47 +105,33 @@ export default function App() {
           return <Card key={data.id} name={data.name} date="2020/09/05" />
         })}
       </div>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>data</th>
 
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>data</th>
-
-        </tr>
-      </thead>
-      <tbody>{/* mapを使ってひとまとめにする  90行目参考 */}
-        {sampleArray.map((data))}
-
-        {/* <tr>
-          <td>1</td>
-          <td>aaa</td>
-          <td>19920527</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>bbb</td>
-          <td>19920528</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>ccc</td>
-          <td>19920529</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>ddd</td>
-          <td>19920531</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>eee</td>
-          <td>19920501</td>
-        </tr> */}
-      </tbody>
-
+          </tr>
+        </thead>
+        <tbody>{/* mapを使ってひとまとめにする  90行目辺り参考 */}
+          {sampleArray.map((data) => {
+            return (
+              <tr>
+                <td>
+                  {data.id}
+                </td>
+                <td>
+                  {data.name}
+                </td>
+                <td>
+                  {data.date}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   );
-}
-
-
+};
