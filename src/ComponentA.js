@@ -7,6 +7,14 @@ import { Table } from 'react-bootstrap'
 import { Nav } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
 
+const sampleArray = [
+    { id: 1, name: 'aaa', date: 19920527 },
+    { id: 2, name: 'bbb', date: 19920528 },
+    { id: 3, name: 'ccc', date: 19920529 },
+    { id: 4, name: 'ddd', date: 19920531 },
+    { id: 5, name: 'eee', date: 19920501 }
+];
+
 const ComponentA = () => {
     return (
         <>
@@ -65,6 +73,28 @@ const ComponentA = () => {
                     <Card.Link href="#">Another Link</Card.Link>
                 </Card.Body>
             </Card>
+
+
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sampleArray.map((data, index) => {
+                        return (
+                            <tr key={index}>
+                                <th>{data.id}</th>
+                                <th>{data.name}</th>
+                                <th>{data.date}</th>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </Table>
         </>
     )
 }

@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Card from './card';
-import { useTable } from 'react-table';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ComponentA from './ComponentA';
 import ComponentB from './ComponentB';
