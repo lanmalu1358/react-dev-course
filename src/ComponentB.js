@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
+import axios from 'axios'
 
 const ComponentB = (props) => {
     const backpage = () => {
         props.history.push('/')
     }
+
+    useEffect(() => {
+        console.log('useEffectが呼び出されました。');
+
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(res => {
+                console.log(res, 'res check')
+            }
+            )
+    }, []);
+
     return (
         <>
             <div>ComponentB</div>
@@ -41,6 +53,7 @@ const ComponentB = (props) => {
                     </tr>
                 </tbody>
             </Table>
+
         </>
     )
 }
