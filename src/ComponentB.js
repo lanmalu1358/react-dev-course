@@ -4,6 +4,7 @@ import { Table } from 'react-bootstrap'
 import axios from 'axios'
 
 const ComponentB = (props) => {
+    const [data, setData] = useState([])
     const backpage = () => {
         props.history.push('/')
     }
@@ -18,6 +19,21 @@ const ComponentB = (props) => {
             )
     }, []);
 
+    const GetData = async () => {
+        await axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(res => {
+                console.log(res, 'res check')
+                setData(res.data)
+            })
+    }
+
+    console.log(data)
+
+    // const Table = GetData.map((axios) => {
+
+    // });
+
+
 
     return (
 
@@ -28,62 +44,54 @@ const ComponentB = (props) => {
 
 
 
-            {/* res.data.userID         userID,ID,Title,Body*/}
-            {
+            {/* <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>userID</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{res.GetData.userID}</td>
+                        <td>{res.GetData.ID}</td>
+                        <td>{res.GetData.Title}</td>
+                        <td>{res.GetData.Body}</td>
+                    </tr>
+                </tbody>
+            </Table> */}
 
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th>userID</th>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Body</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </Table>
 
-            }
-
-            <button href='https://jsonplaceholder.typicode.com/posts'>
-                <a href='https://jsonplaceholder.typicode.com/posts'>GetData</a>
+            <button onClick={GetData}>
+                <a>GetData</a>
             </button>
 
 
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>userId</th>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Body</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+
+                    {
+                        data.map((dt, index) => {
+                            return (
+                                <tr>
+                                    <td>{dt.userId}</td>
+                                    <td>{dt.id}</td>
+                                    <td>{dt.title}</td>
+                                    <td>{dt.body}</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </Table>
 
