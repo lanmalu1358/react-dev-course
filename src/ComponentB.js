@@ -9,6 +9,7 @@ const ComponentB = (props) => {
         props.history.push('/')
     }
 
+
     useEffect(() => {
         console.log('useEffectが呼び出されました。');
 
@@ -18,6 +19,7 @@ const ComponentB = (props) => {
             }
             )
     }, []);
+
 
     const GetData = async () => {
         await axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -29,11 +31,6 @@ const ComponentB = (props) => {
 
     console.log(data)
 
-    // const Table = GetData.map((axios) => {
-
-    // });
-
-
 
     return (
 
@@ -43,29 +40,8 @@ const ComponentB = (props) => {
             <Link to="componentc">ComponentCへ移動</Link>
 
 
-
-            {/* <Table striped bordered hover variant="dark">
-                <thead>
-                    <tr>
-                        <th>userID</th>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Body</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{res.GetData.userID}</td>
-                        <td>{res.GetData.ID}</td>
-                        <td>{res.GetData.Title}</td>
-                        <td>{res.GetData.Body}</td>
-                    </tr>
-                </tbody>
-            </Table> */}
-
-
             <button onClick={GetData}>
-                <a>GetData</a>
+                <p>GetData</p>
             </button>
 
 
@@ -79,11 +55,10 @@ const ComponentB = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-
                     {
                         data.map((dt, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{dt.userId}</td>
                                     <td>{dt.id}</td>
                                     <td>{dt.title}</td>
@@ -92,6 +67,13 @@ const ComponentB = (props) => {
                             )
                         })
                     }
+                    {/*↓テスト用*/}
+                    {/* <tr>  
+                        <td>a</td>
+                        <td>b</td>
+                        <td>c</td>
+                        <td>d</td>
+                    </tr> */}
                 </tbody>
             </Table>
 
