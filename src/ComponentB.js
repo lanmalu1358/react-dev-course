@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ComponentB = (props) => {
     const [data, setData] = useState([])
