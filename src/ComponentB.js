@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { ADD_EVENT } from './actions/index';
+import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT } from './actions/index';
 import reducers from './reducers/index';
 import { Button, Form, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,16 +10,39 @@ const ComponentB = () => {
     const [state, dispatch] = useReducer(reducers, []);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [comment, setComment] = useState('');
 
     const handleClick = (e) => {
         e.preventDefault();
         dispatch({
             type: ADD_EVENT,
             title,
-            body
+            body,
+            comment
         });
         setTitle('');
         setBody('');
+        setComment('');
+    };
+
+    const HandleClick = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: DELETE_EVENT,
+            title,
+            body,
+            comment
+        });
+    };
+
+    const HANDLEclick = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: ALLDELI_EVENT,
+            title,
+            body,
+            comment
+        });
     };
 
 
@@ -36,20 +59,27 @@ const ComponentB = () => {
                         type='text'
                         placeholder="title"
                         value={title}
-                        onChange={(e) => setBody(e.target.value)}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                     <Form.Label>Body</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="title"
+                        placeholder="body"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
+                    />
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="comment"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
                     />
                 </Form.Group>
                 <Button variant="primary" onClick={handleClick}>
                     イベント作成
             </Button>
-                <Button variant="danger" onClick={handleClick}>
+                <Button variant="danger" onClick={HANDLEclick}>
                     イベント全削除
             </Button>
             </Form>
@@ -61,6 +91,7 @@ const ComponentB = () => {
                         <th>id</th>
                         <th>title</th>
                         <th>body</th>
+                        <th>comment</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -71,8 +102,9 @@ const ComponentB = () => {
                                 <td>{data.id}</td>
                                 <td>{data.title}</td>
                                 <td>{data.body}</td>
+                                <td>{data.comment}</td>
                                 <td>
-                                    <Button variant="danger">削除</Button>
+                                    <Button variant="danger" onClick={HandleClick}>削除</Button>
                                 </td>
                             </tr>
                         )
