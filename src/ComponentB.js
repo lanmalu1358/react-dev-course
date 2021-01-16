@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT } from './actions/index';
+import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT, DELETEID } from './actions/index';
 import reducers from './reducers/index';
 import { Button, Form, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,6 +11,7 @@ const ComponentB = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [comment, setComment] = useState('');
+
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -29,9 +30,7 @@ const ComponentB = () => {
         e.preventDefault();
         dispatch({
             type: DELETE_EVENT,
-            title,
-            body,
-            comment
+            DELETEID
         });
     };
 
@@ -44,6 +43,8 @@ const ComponentB = () => {
             comment
         });
     };
+
+
 
 
     return (
