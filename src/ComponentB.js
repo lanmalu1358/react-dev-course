@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT, DELETEID } from './actions/index';
+import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT } from './actions/index';
 import reducers from './reducers/index';
 import { Button, Form, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +13,7 @@ const ComponentB = () => {
     const [comment, setComment] = useState('');
 
 
-    const handleClick = (e) => {
+    const Add = (e) => {
         e.preventDefault();
         dispatch({
             type: ADD_EVENT,
@@ -26,15 +26,9 @@ const ComponentB = () => {
         setComment('');
     };
 
-    const HandleClick = (e) => {
-        e.preventDefault();
-        dispatch({
-            type: DELETE_EVENT,
-            DELETEID
-        });
-    };
 
-    const HANDLEclick = (e) => {
+
+    const Alldeli = (e) => {
         e.preventDefault();
         dispatch({
             type: ALLDELI_EVENT,
@@ -43,8 +37,6 @@ const ComponentB = () => {
             comment
         });
     };
-
-
 
 
     return (
@@ -77,10 +69,10 @@ const ComponentB = () => {
                         onChange={(e) => setComment(e.target.value)}
                     />
                 </Form.Group>
-                <Button variant="primary" onClick={handleClick}>
+                <Button variant="primary" onClick={Add}>
                     イベント作成
             </Button>
-                <Button variant="danger" onClick={HANDLEclick}>
+                <Button variant="danger" onClick={Alldeli}>
                     イベント全削除
             </Button>
             </Form>
@@ -98,6 +90,15 @@ const ComponentB = () => {
                 </thead>
                 <tbody>
                     {state.map((data, index) => {
+
+                        const Delete = (e) => {
+                            e.preventDefault();
+                            dispatch({
+                                type: DELETE_EVENT,
+                                id: data.id
+                            });
+                        };
+
                         return (
                             <tr key={index}>
                                 <td>{data.id}</td>
@@ -105,7 +106,7 @@ const ComponentB = () => {
                                 <td>{data.body}</td>
                                 <td>{data.comment}</td>
                                 <td>
-                                    <Button variant="danger" onClick={HandleClick}>削除</Button>
+                                    <Button variant="danger" onClick={Delete}>削除</Button>
                                 </td>
                             </tr>
                         )
