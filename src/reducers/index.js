@@ -4,23 +4,36 @@ import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT } from '../actions/index';
 const reducer = (state = [], action) => {
     switch (action.type) {
         case INCREMENT:
-            return { ...state, count: state.count + 1 };
+            console.log(state.count)
+
+            if (state.count !== 0) {
+                if (state.count % 3 !== 0) {
+                    return { ...state, count: state.count + 1 }
+                }
+                else if (state.count % 3 === 0) {
+                    return { ...state, count: state.count + 10 }
+                }
+            }
+            else if (state.count === 0) {
+                return { ...state, count: state.count + 1 }
+            }
+            break;
         case DECREMENT:
-            return { ...state, count: state.count - 1 };
+            if (state.count % 3 !== 0)
+                return { ...state, count: state.count - 1 };
+            if (state.count % 3 === 0)
+                return { ...state, count: state.count + 10 };
         case RESET:
             return { count: 0 };
+
+
         case ADD_EVENT:
             const addevent = { title: action.title, body: action.body, comment: action.comment };
             const addid = state.length + 1;
             return [...state, { id: addid, ...addevent }];
 
-
         // ヒント：Array.prototype.filterで調べる
         case DELETE_EVENT:
-            //     const deleteevent = { id: action.id };
-            //     const DELETEID = state.length - 1;
-            //     return [...state, { DELETEID, ...deleteevent }];
-
             console.log(state);
             console.log(action);
             const result = state.filter(data => data.id !== action.id);
