@@ -1,5 +1,6 @@
 import { INCREMENT, DECREMENT, RESET } from '../actions/index';
 import { ADD_EVENT, DELETE_EVENT, ALLDELI_EVENT } from '../actions/index';
+import { ADDDATA } from '../actions/index';
 
 const reducer = (state = [], action) => {
     switch (action.type) {
@@ -23,6 +24,7 @@ const reducer = (state = [], action) => {
                 return { ...state, count: state.count - 1 };
             if (state.count % 3 === 0)
                 return { ...state, count: state.count + 10 };
+            break;
         case RESET:
             return { count: 0 };
 
@@ -44,6 +46,10 @@ const reducer = (state = [], action) => {
             return [];
         default:
             return state;
+
+        case ADDDATA:
+            console.log(action.data)
+            return { data: action.data };
     }
 };
 

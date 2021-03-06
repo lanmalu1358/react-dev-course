@@ -4,7 +4,8 @@ import reducer from './reducers/index';
 import ComponentD from './ComponentD'
 
 const initialCount = {
-    count: 0
+    count: 0,
+    data: []
 };
 
 const ComponentC = () => {
@@ -29,6 +30,8 @@ const ComponentC = () => {
         });
     };
 
+
+
     return (
         <div>
             <div>ComponentC</div>
@@ -36,8 +39,8 @@ const ComponentC = () => {
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
             <button onClick={reset}>reset</button>
-            <h1>{state.count}</h1>
-
+            {/* <h1>{state.count}</h1> */}
+            {state.count}
             <ComponentD />
         </div>
 
